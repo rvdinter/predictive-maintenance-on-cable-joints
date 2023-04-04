@@ -1,0 +1,10 @@
+{
+  "data": {
+    "failed_joints_data_absolute_path": "D:\\Alliander\\predictive-maintenance-on-cable-joints\\common\\data\\FailedJoints.xlsx",
+    "circuit_config_absolute_root_folder": "D:\\Alliander\\predictive-maintenance-on-cable-joints\\common\\data\\CircuitConfig",
+    "partial_discharge_data_absolute_root_folder": "D:\\Alliander\\predictive-maintenance-on-cable-joints\\common\\data\\PartialDischarge",
+    "circuit_coordinates_data_absolute_path": "D:\\Alliander\\predictive-maintenance-on-cable-joints\\common\\data\\CircuitCoordinates.xlsx",
+    "partial_discharge_seasonality_joints_path": "D:\\Alliander\\predictive-maintenance-on-cable-joints\\common\\data\\SeasonalJoints.xlsx",
+    "circuit_weather_absolute_folder": "D:\\Alliander\\predictive-maintenance-on-cable-joints\\common\\data\\CircuitWeather"
+  }
+}
