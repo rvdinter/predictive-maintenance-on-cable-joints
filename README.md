@@ -1,3 +1,4 @@
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7863854.svg)](https://doi.org/10.5281/zenodo.7863854)
 # Predictive maintenance on cable joints
 Within Alliander, challenges in operations are rising due to the energy transition. In order to facilitate Dutch electricity users, we have to not only work harder, but also smarter. Knowing when a cable will fail will help with plannability and research for electricity grid improvements. Sioux Technologies is supporting Alliander in this research.
 
