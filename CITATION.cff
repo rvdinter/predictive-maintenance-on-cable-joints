@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+  - family-names: van Dinter
+    given-names: Raymon
+    orcid:  https://orcid.org/0000-0002-1811-8803
+  - family-names: Ekmekci
+    given-names: Görkem
+  - family-names: Netten
+    given-names: Gerdtinus
+  - family-names: Rieken
+    given-names: Sander
+  - family-names: Tekinderdogan
+    given-names: Bedir
+    orcid:  https://orcid.org/0000-0002-8538-7261
+  - family-names: Catal
+    given-names: Cagatay
+    orcid:  https://orcid.org/0000-0003-0959-2930
+title: "A code repository for predictive maintenance on cable joints."
+version: v0.1
+doi: -
+date-released: 2023-04-25

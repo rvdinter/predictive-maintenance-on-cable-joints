@@ -1,4 +1,3 @@
-from pathlib import Path
 from typing import Dict
 
 import pandas as pd
@@ -17,12 +16,14 @@ class CircuitFactory:
     def __init__(self,
                  config: Dict,
                  circuit_coordinates_reader: ICircuitCoordinatesReader,
-                 weather_retriever: ICircuitWeatherRetriever,
+                 cds_weather_retriever: ICircuitWeatherRetriever,
+                 knmi_weather_retriever: ICircuitWeatherRetriever,
                  csv_partial_discharge_storage: ICircuitPartialDischargeReader,
                  csv_circuit_config_reader: ICircuitConfigReader):
         self.__config = config
         self.__circuit_coordinates_reader = circuit_coordinates_reader
-        self.__weather_retriever = weather_retriever
+        self.__cds_weather_retriever = cds_weather_retriever
+        self.__knmi_weather_retriever = knmi_weather_retriever
         self.__csv_partial_discharge_storage = csv_partial_discharge_storage
         self.__csv_circuit_config_reader = csv_circuit_config_reader
         self._circuit_weather = None
@@ -39,9 +40,11 @@ class CircuitFactory:
         partial_discharge_data = self.__load_partial_discharge_data(str(circuit_id))
         time_window = TimeWindow(partial_discharge_data[ICircuitPartialDischargeReader.DATETIME_COLUMN].min(),
                                  partial_discharge_data[ICircuitPartialDischargeReader.DATETIME_COLUMN].max())
-        circuit_weather = self.__weather_retriever.get_weather(circuit_coordinate, time_window)
+        circuit_knmi_weather = self.__knmi_weather_retriever.get_weather(circuit_coordinate, time_window)
+        circuit_cds_weather = self.__cds_weather_retriever.get_weather(circuit_coordinate, time_window)
         return Circuit(circuit_id=circuit_id,
-                       weather=circuit_weather,
+                       cds_weather=circuit_cds_weather,
+                       knmi_weather=circuit_knmi_weather,
                        circuit_coordinate=circuit_coordinate,
                        partial_discharge=partial_discharge_data,
                        time_window=time_window,

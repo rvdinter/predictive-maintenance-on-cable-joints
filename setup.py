@@ -13,7 +13,8 @@ setup(
                       "seaborn~=0.12",
                       "numpy~=1.24",
                       "requests~=2.28",
-                      "openpyxl~=3.1"
+                      "openpyxl~=3.1",
+                      "skforecast~=0.6"
                       ],
     packages=["alliander_predictive_maintenance"]
 )

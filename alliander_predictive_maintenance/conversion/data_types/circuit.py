@@ -12,10 +12,11 @@ from alliander_predictive_maintenance.constants import INVALID_JOINT_LOCATION, I
 
 class Circuit:
     """ An object representing a Circuit consisting of joints """
-    def __init__(self, circuit_id: int, weather: pd.DataFrame, circuit_coordinate: CircuitCoordinate,
+    def __init__(self, circuit_id: int, cds_weather: pd.DataFrame, knmi_weather: pd.DataFrame, circuit_coordinate: CircuitCoordinate,
                  partial_discharge: pd.DataFrame, time_window: TimeWindow, circuit_length: float):
         self.__circuit_id = circuit_id
-        self.__weather = weather
+        self.__cds_weather = cds_weather
+        self.__knmi_weather = knmi_weather
         self.__circuit_coordinate = circuit_coordinate
         self.__partial_discharge = partial_discharge
         self.__time_window = time_window
@@ -24,10 +25,18 @@ class Circuit:
     @property
     def circuit_id(self):
         return self.__circuit_id
+    
+    @property
+    def circuit_length(self):
+        return self.__circuit_length
 
     @property
-    def weather(self) -> pd.DataFrame:
-        return self.__weather
+    def cds_weather(self) -> pd.DataFrame:
+        return self.__cds_weather
+
+    @property
+    def knmi_weather(self) -> pd.DataFrame:
+        return self.__knmi_weather
 
     @property
     def time_window(self):
@@ -46,10 +55,10 @@ class Circuit:
             raise ValueError(INVALID_JOINT_LOCATION.format(location=location, circuit_length=self.__circuit_length))
         partial_discharge = self.__get_partial_discharge_at_location(location=location,
                                                                      resampling_strategy=resampling_strategy)
-        if time_window.start_date < partial_discharge.index.min() or time_window.end_date > partial_discharge.index.max():
+        if time_window.start_date > time_window.end_date:
             raise ValueError(INVALID_TIME_WINDOW.format(time_window=time_window,
-                                                        min=partial_discharge.index.min(),
-                                                        max=partial_discharge.index.max()))
+                                                        min=time_window.start_date,
+                                                        max=time_window.end_date))
         partial_discharge = partial_discharge[time_window.start_date:time_window.end_date]
         return Joint(location, partial_discharge)
 
